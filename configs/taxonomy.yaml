@@ -1,0 +1,65 @@
+version: "taxonomy@2025-12-26"
+
+categories:
+  - id: installation
+    name: "Installation & Setup"
+    desc: "WPML 安装/激活/首次设置/依赖要求/注册与站点 key（偏技术侧安装配置）"
+    includes:
+      - "install/activate/setup wizard/OTGS Installer"
+      - "PHP 版本、内存、依赖缺失导致无法启用"
+      - "站点注册、site key 添加/更换（技术配置语境）"
+    excludes:
+      - "纯计费/发票/退款（归 billing）"
+
+  - id: translation
+    name: "Translation Workflow"
+    desc: "翻译相关：Translation Editor、String Translation、语言内容同步、WooCommerce 多语言等"
+    includes:
+      - "Advanced/Classic Translation Editor"
+      - "String Translation、翻译队列、翻译完成不生效"
+      - "WooCommerce Multilingual、产品翻译、多币种（功能侧）"
+    excludes:
+      - "纯 SEO 标签/索引（归 seo）"
+
+  - id: seo
+    name: "SEO & Indexing"
+    desc: "多语言 SEO：sitemap、hreflang、canonical、索引与重定向等"
+    includes:
+      - "sitemap/hreflang/canonical"
+      - "Search Console indexing / duplicated content"
+    excludes:
+      - "性能慢（归 performance）"
+
+  - id: compatibility
+    name: "Compatibility"
+    desc: "主题/插件/Builder/缓存/CDN/压缩等兼容性问题导致功能异常"
+    includes:
+      - "Elementor/Divi/WPBakery/Avada/Gutenberg"
+      - "缓存/压缩/合并（JS/CSS）导致语言切换、编辑器异常"
+      - "第三方插件冲突"
+    excludes:
+      - "纯性能慢且无兼容症状（归 performance）"
+
+  - id: performance
+    name: "Performance & Errors"
+    desc: "性能与错误：慢、超时、内存耗尽、fatal error、数据库查询等"
+    includes:
+      - "slow/timeout/504/500/memory exhausted"
+      - "database query heavy、CPU 高、卡死"
+    excludes:
+      - "纯功能冲突但无性能表现（归 compatibility）"
+
+  - id: billing
+    name: "Account & Billing"
+    desc: "账号与计费：订阅、付款、发票、退款、升级降级、账户访问等"
+    includes:
+      - "subscription/payment/invoice/refund/VAT"
+      - "cancel/renew/upgrade/downgrade"
+    excludes:
+      - "纯技术安装依赖问题（归 installation）"
+
+  - id: other
+    name: "Other"
+    desc: "无法明确归类或置信度不足时的兜底类别"
+    includes: ["fallback"]
+    excludes: []
