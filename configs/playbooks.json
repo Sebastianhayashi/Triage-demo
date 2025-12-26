@@ -1,0 +1,90 @@
+{
+  "version": "playbooks@2025-12-26",
+  "low_confidence_threshold": 0.25,
+  "default": {
+    "next_questions": [
+      "请提供 WordPress 版本、WPML 版本，以及当前启用的主题/插件列表。",
+      "问题是否可稳定复现？请给出复现步骤与涉及的页面/URL。",
+      "请开启 WP_DEBUG 并提供 debug.log 中与复现时间点相关的报错片段（如有）。"
+    ],
+    "diagnostic_steps": [
+      "在暂时仅启用 WPML 相关插件的情况下复现一次，以排除第三方插件冲突。",
+      "切换到默认主题（如 Twenty Twenty 系列）复现一次，以排除主题层冲突。",
+      "清理缓存（浏览器/站点缓存/CDN）后重试，并记录现象是否变化。"
+    ]
+  },
+  "by_category": {
+    "installation": {
+      "next_questions": [
+        "安装/激活时的具体报错信息是什么？请提供截图或完整错误文本。",
+        "服务器 PHP 版本、memory_limit、max_execution_time 分别是多少？",
+        "是否使用 OTGS Installer 安装？站点是否已成功注册（site key）？"
+      ],
+      "diagnostic_steps": [
+        "确认 PHP 版本与 WPML 最低要求匹配；必要时升级 PHP 并提高 memory_limit。",
+        "使用 OTGS Installer 重新安装/更新 WPML 组件，确保下载源可访问。",
+        "在 WPML → Support 页面执行 troubleshooting 中的基础修复（如清理缓存、重建缓存）。"
+      ]
+    },
+    "translation": {
+      "next_questions": [
+        "使用的是 Advanced Translation Editor 还是 Classic Translation Editor？",
+        "问题发生在页面翻译还是 String Translation（主题/插件字符串）？",
+        "涉及的内容类型是什么（page/post/product/taxonomy）？是否使用 WooCommerce Multilingual？"
+      ],
+      "diagnostic_steps": [
+        "确认翻译作业状态：是否卡在队列、是否提示 needs update、是否存在重复内容导致的同步问题。",
+        "若是 String Translation：确认字符串域（domain）与扫描来源；必要时重新扫描主题/插件字符串。",
+        "对单个示例内容执行一次完整流程：原文更新→发送翻译→完成→检查前端是否刷新。"
+      ]
+    },
+    "seo": {
+      "next_questions": [
+        "使用的 SEO 插件是 Yoast / Rank Math / AIOSEO / 其他？请提供版本号。",
+        "问题是 sitemap 生成、hreflang/canonical 输出、还是 Google 索引异常（Search Console 报错）？",
+        "站点的语言 URL 格式是什么（目录/子域/参数）？是否存在重定向规则？"
+      ],
+      "diagnostic_steps": [
+        "检查示例页面的源代码：hreflang 与 canonical 是否符合预期（语言互链、无自相矛盾）。",
+        "重新生成 sitemap 并对比各语言条目是否完整，排查 404/重定向导致的缺失。",
+        "若 Search Console 报 duplicate/canonical：逐项核对多语言 URL 与 canonical 生成规则，避免交叉指向。"
+      ]
+    },
+    "compatibility": {
+      "next_questions": [
+        "涉及的主题/Builder/插件名称与版本号是什么（例如 Elementor/Divi/WPBakery + 版本）？",
+        "是否启用缓存/压缩/合并（JS/CSS）或 CDN（Cloudflare）？具体配置是什么？",
+        "停用相关插件后问题是否消失？（请确认最小复现组合）"
+      ],
+      "diagnostic_steps": [
+        "临时关闭缓存/压缩/合并（尤其 JS 延迟加载/合并）后复测，判断是否为前端资源问题。",
+        "将 WPML 相关页面/端点加入缓存排除列表（如适用），并清除 CDN 缓存后复测。",
+        "按二分法停用插件定位冲突源：只保留 WPML + 必要组件，逐个启用观察。"
+      ]
+    },
+    "performance": {
+      "next_questions": [
+        "具体慢在哪里（后台/前台/翻译编辑器/保存内容/批量操作）？慢的量级（秒数）如何？",
+        "是否出现 500/502/504、memory exhausted、maximum execution time 等错误？",
+        "服务器资源情况（CPU/内存）与数据库是否有异常慢查询？是否可提供性能剖析或查询日志片段？"
+      ],
+      "diagnostic_steps": [
+        "开启 WP_DEBUG 与查询日志（如可行），复现一次并收集错误与慢查询线索。",
+        "提高 memory_limit 与 max_execution_time 后复测，判断是否为资源阈值触发。",
+        "对比：仅启用 WPML 相关插件 vs 全量插件，评估性能差异以定位瓶颈来源。"
+      ]
+    },
+    "billing": {
+      "next_questions": [
+        "问题类型是付款失败、订阅续费、发票/VAT、退款、还是账户访问？请明确。",
+        "订单/发票编号（如有）与账户邮箱是什么？",
+        "是否近期做过升级/降级/取消订阅操作？具体时间点是什么？"
+      ],
+      "diagnostic_steps": [
+        "核对账户订阅状态与绑定站点数量上限是否匹配当前使用情况。",
+        "若为付款失败：更换支付方式/卡或检查银行拦截；记录支付错误提示。",
+        "若为发票/VAT：核对账单信息与税号填写；如需调整按流程重新开具或补充信息。"
+      ]
+    }
+  }
+}
