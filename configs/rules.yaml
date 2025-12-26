@@ -1,0 +1,161 @@
+version: "rules@2025-12-26"
+
+thresholds:
+  min_score: 2.0
+  min_confidence: 0.20
+
+categories:
+
+  installation:
+    keywords:
+      - { id: "kw:install", pattern: "install", weight: 1.5 }
+      - { id: "kw:activate", pattern: "activate", weight: 1.2 }
+      - { id: "kw:setup wizard", pattern: "setup wizard", weight: 2.5 }
+      - { id: "kw:otgs installer", pattern: "otgs installer", weight: 3.0 }
+      - { id: "kw:wpml installer", pattern: "installer", weight: 1.2 }
+      - { id: "kw:registration key", pattern: "registration key", weight: 3.0 }
+      - { id: "kw:site key", pattern: "site key", weight: 3.0 }
+      - { id: "kw:register", pattern: "register", weight: 1.8 }
+      - { id: "kw:repositories", pattern: "repositories", weight: 1.0 }
+      - { id: "kw:download", pattern: "download", weight: 1.0 }
+      - { id: "kw:php version", pattern: "php", weight: 1.2 }
+      - { id: "kw:memory limit", pattern: "memory limit", weight: 2.0 }
+      - { id: "kw:requirements", pattern: "requirement", weight: 2.0 }
+      - { id: "kw:cannot activate", pattern: "can't activate", weight: 2.2 }
+      - { id: "kw:plugin not found", pattern: "plugin not found", weight: 2.0 }
+    regex:
+      - { id: "re:missing dependency", pattern: "\\bmissing\\b.*\\bdependency\\b", weight: 2.0 }
+      - { id: "re:requires php", pattern: "\\brequires\\b.*\\bphp\\b", weight: 2.0 }
+      - { id: "re:invalid key", pattern: "\\binvalid\\b.*\\b(key|site key|registration)\\b", weight: 2.5 }
+
+  translation:
+    keywords:
+      - { id: "kw:translation editor", pattern: "translation editor", weight: 3.0 }
+      - { id: "kw:advanced translation editor", pattern: "advanced translation editor", weight: 3.5 }
+      - { id: "kw:classic translation editor", pattern: "classic translation editor", weight: 3.5 }
+      - { id: "kw:ate", pattern: "ate", weight: 1.0 }
+      - { id: "kw:cte", pattern: "cte", weight: 1.0 }
+      - { id: "kw:string translation", pattern: "string translation", weight: 3.5 }
+      - { id: "kw:wpml st", pattern: "wpml st", weight: 1.2 }
+      - { id: "kw:translation management", pattern: "translation management", weight: 2.8 }
+      - { id: "kw:send to translation", pattern: "send to translation", weight: 2.2 }
+      - { id: "kw:translation queue", pattern: "translation queue", weight: 2.2 }
+      - { id: "kw:needs update", pattern: "needs update", weight: 1.4 }
+      - { id: "kw:duplicate", pattern: "duplicate", weight: 1.0 }
+      - { id: "kw:language switcher", pattern: "language switcher", weight: 2.0 }
+      - { id: "kw:wpml media", pattern: "wpml media", weight: 2.0 }
+      - { id: "kw:media translation", pattern: "media translation", weight: 2.5 }
+      - { id: "kw:woocommerce multilingual", pattern: "woocommerce multilingual", weight: 3.0 }
+      - { id: "kw:wcml", pattern: "wcml", weight: 2.0 }
+      - { id: "kw:multicurrency", pattern: "multi currency", weight: 2.0 }
+      - { id: "kw:products translation", pattern: "product translation", weight: 2.0 }
+      - { id: "kw:translation not showing", pattern: "translation not", weight: 1.6 }
+      - { id: "kw:strings not", pattern: "string", weight: 0.8 }
+    regex:
+      - { id: "re:translated not updated", pattern: "\\btranslation\\b.*\\b(not|isn't|doesn't)\\b.*\\b(update|show|apply)\\b", weight: 2.2 }
+      - { id: "re:cannot open editor", pattern: "\\b(can't|cannot)\\b.*\\b(open|load)\\b.*\\btranslation editor\\b", weight: 3.0 }
+      - { id: "re:st missing", pattern: "\\bstring translation\\b.*\\b(missing|not available|not showing)\\b", weight: 3.0 }
+
+  seo:
+    keywords:
+      - { id: "kw:sitemap", pattern: "sitemap", weight: 3.5 }
+      - { id: "kw:xml sitemap", pattern: "xml sitemap", weight: 3.5 }
+      - { id: "kw:hreflang", pattern: "hreflang", weight: 3.5 }
+      - { id: "kw:canonical", pattern: "canonical", weight: 3.0 }
+      - { id: "kw:noindex", pattern: "noindex", weight: 2.5 }
+      - { id: "kw:indexing", pattern: "index", weight: 1.6 }
+      - { id: "kw:search console", pattern: "search console", weight: 3.0 }
+      - { id: "kw:google", pattern: "google", weight: 1.0 }
+      - { id: "kw:duplicate content", pattern: "duplicate content", weight: 3.0 }
+      - { id: "kw:redirect", pattern: "redirect", weight: 1.5 }
+      - { id: "kw:yoast", pattern: "yoast", weight: 2.5 }
+      - { id: "kw:rank math", pattern: "rank math", weight: 2.5 }
+      - { id: "kw:aioseo", pattern: "aioseo", weight: 2.0 }
+      - { id: "kw:robots.txt", pattern: "robots.txt", weight: 2.0 }
+      - { id: "kw:permalink", pattern: "permalink", weight: 1.5 }
+      - { id: "kw:404", pattern: "404", weight: 1.2 }
+      - { id: "kw:slug", pattern: "slug", weight: 1.2 }
+    regex:
+      - { id: "re:hreflang missing", pattern: "\\bhreflang\\b.*\\b(missing|incorrect|wrong)\\b", weight: 3.0 }
+      - { id: "re:canonical wrong", pattern: "\\bcanonical\\b.*\\b(wrong|incorrect|duplicate)\\b", weight: 3.0 }
+      - { id: "re:sitemap error", pattern: "\\bsitemap\\b.*\\b(error|404|not found|empty)\\b", weight: 3.2 }
+
+  compatibility:
+    keywords:
+      - { id: "kw:cache", pattern: "cache", weight: 2.0 }
+      - { id: "kw:caching", pattern: "caching", weight: 2.0 }
+      - { id: "kw:minify", pattern: "minify", weight: 2.0 }
+      - { id: "kw:minification", pattern: "minification", weight: 2.0 }
+      - { id: "kw:combine", pattern: "combine", weight: 1.2 }
+      - { id: "kw:js", pattern: "javascript", weight: 1.0 }
+      - { id: "kw:css", pattern: "css", weight: 1.0 }
+      - { id: "kw:cloudflare", pattern: "cloudflare", weight: 2.2 }
+      - { id: "kw:cdn", pattern: "cdn", weight: 1.5 }
+      - { id: "kw:wp rocket", pattern: "wp rocket", weight: 2.5 }
+      - { id: "kw:autoptimize", pattern: "autoptimize", weight: 2.5 }
+      - { id: "kw:litespeed", pattern: "litespeed", weight: 2.5 }
+      - { id: "kw:w3 total cache", pattern: "w3 total cache", weight: 2.5 }
+      - { id: "kw:elementor", pattern: "elementor", weight: 3.0 }
+      - { id: "kw:divi", pattern: "divi", weight: 2.5 }
+      - { id: "kw:wpbakery", pattern: "wpbakery", weight: 2.5 }
+      - { id: "kw:avada", pattern: "avada", weight: 2.0 }
+      - { id: "kw:gutenberg", pattern: "gutenberg", weight: 2.0 }
+      - { id: "kw:page builder", pattern: "page builder", weight: 2.0 }
+      - { id: "kw:shortcode", pattern: "shortcode", weight: 1.5 }
+      - { id: "kw:conflict", pattern: "conflict", weight: 2.0 }
+      - { id: "kw:incompatible", pattern: "incompatible", weight: 2.5 }
+      - { id: "kw:language switcher", pattern: "language switcher", weight: 1.8 }
+      - { id: "kw:not working", pattern: "not working", weight: 1.0 }
+    regex:
+      - { id: "re:works when disabled", pattern: "\\bworks\\b.*\\bwhen\\b.*\\bdisable\\b", weight: 2.0 }
+      - { id: "re:plugin conflict", pattern: "\\b(plugin|theme)\\b.*\\bconflict\\b", weight: 2.8 }
+      - { id: "re:cache breaks", pattern: "\\bcache\\b.*\\b(break|issue|problem)\\b", weight: 2.2 }
+
+  performance:
+    keywords:
+      - { id: "kw:slow", pattern: "slow", weight: 2.5 }
+      - { id: "kw:performance", pattern: "performance", weight: 2.5 }
+      - { id: "kw:timeout", pattern: "timeout", weight: 2.8 }
+      - { id: "kw:timed out", pattern: "timed out", weight: 2.8 }
+      - { id: "kw:memory exhausted", pattern: "memory exhausted", weight: 3.5 }
+      - { id: "kw:out of memory", pattern: "out of memory", weight: 3.2 }
+      - { id: "kw:fatal error", pattern: "fatal error", weight: 3.2 }
+      - { id: "kw:critical error", pattern: "critical error", weight: 3.0 }
+      - { id: "kw:500", pattern: "500", weight: 1.8 }
+      - { id: "kw:502", pattern: "502", weight: 1.8 }
+      - { id: "kw:503", pattern: "503", weight: 1.8 }
+      - { id: "kw:504", pattern: "504", weight: 2.0 }
+      - { id: "kw:database", pattern: "database", weight: 1.8 }
+      - { id: "kw:query", pattern: "query", weight: 1.0 }
+      - { id: "kw:cron", pattern: "cron", weight: 1.6 }
+      - { id: "kw:cpu", pattern: "cpu", weight: 1.6 }
+      - { id: "kw:server load", pattern: "server", weight: 1.0 }
+      - { id: "kw:wp debug", pattern: "debug", weight: 1.0 }
+    regex:
+      - { id: "re:maximum execution time", pattern: "\\bmaximum execution time\\b", weight: 3.2 }
+      - { id: "re:allowed memory size", pattern: "\\ballowed memory size\\b", weight: 3.5 }
+      - { id: "re:too many redirects", pattern: "\\btoo many redirects\\b", weight: 2.2 }
+
+  billing:
+    keywords:
+      - { id: "kw:subscription", pattern: "subscription", weight: 3.2 }
+      - { id: "kw:billing", pattern: "billing", weight: 3.0 }
+      - { id: "kw:payment", pattern: "payment", weight: 3.0 }
+      - { id: "kw:invoice", pattern: "invoice", weight: 3.2 }
+      - { id: "kw:refund", pattern: "refund", weight: 3.2 }
+      - { id: "kw:vat", pattern: "vat", weight: 2.5 }
+      - { id: "kw:credit card", pattern: "credit card", weight: 2.5 }
+      - { id: "kw:cancel", pattern: "cancel", weight: 2.5 }
+      - { id: "kw:renew", pattern: "renew", weight: 2.3 }
+      - { id: "kw:upgrade", pattern: "upgrade", weight: 2.3 }
+      - { id: "kw:downgrade", pattern: "downgrade", weight: 2.3 }
+      - { id: "kw:account", pattern: "account", weight: 1.5 }
+      - { id: "kw:login", pattern: "login", weight: 1.2 }
+      - { id: "kw:receipt", pattern: "receipt", weight: 2.5 }
+    regex:
+      - { id: "re:charged", pattern: "\\bcharged\\b.*\\b(card|payment)\\b", weight: 2.8 }
+      - { id: "re:cannot access account", pattern: "\\b(can't|cannot)\\b.*\\b(access|login)\\b.*\\baccount\\b", weight: 2.8 }
+
+  other:
+    keywords: []
+    regex: []
